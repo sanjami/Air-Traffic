@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ListItem from './ListItem';
 
-const FlightList = (props) => {
-    
+const FlightList = (props) => { 
+
     return (
-        <div>
+        <div id="list">
             {props.flights.map((flight) => {
                 return (<div className="column" key={flight.id}>
                     <ListItem oneFlight={flight} />

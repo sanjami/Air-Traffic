@@ -1,34 +1,83 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { dataServices } from '../../../servece/dataService';
+import { Alert, Button, Col, Image, Row } from 'react-bootstrap';
+import giphy1 from '../../../images/giphy1.gif'
 import FlightsList from './FlightsList';
 import {
     fetchAllFlights,
-    fetchFlightsSucceeded,
-    fetchFlightsFailed
 } from '../../actions/flightsActions';
 
 class Flights extends Component {
 
-    componentDidMount() {
-        this.props.onFetchFlights();
+    constructor(props) {
+        super(props)
+        this.state = {
+            latitude: '',
+            longitude: '',
+        }
     }
 
+    componentDidMount() {
+        if (this.props.allFlights === false) {
+            this.onSetLocation();
+    
+            const { latitude, longitude } = this.state;
+            
+            this.props.onFetchFlights({ latitude, longitude })
+        }
+        const { latitude, longitude } = this.state;
+        this.interval = setInterval(() => this.props.onFetchFlights({ latitude, longitude }), 60000);
+    }
 
+    onSetLocation = () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            })
+        });
+    }
+
+    handleFetchAgain = () => {
+        const { latitude, longitude } = this.state;
+        this.props.onFetchFlights({ latitude, longitude })
+    }
+   
+    componentWillUnmount() {
+		clearInterval(this.interval)
+    }
+    
     render() {
-        const { allFlights, allFlightsLoading, allFlightsError } = this.props;
-
         let mainContent = null;
 
-        if (allFlightsLoading === true) {
-            mainContent = (<div>loadingg</div>);
-        } else if (allFlightsError === true) {
-            mainContent = (<div>error</div>);
-        } else if (allFlights !== false) {
-            mainContent = (<FlightsList flights={allFlights} />);
+        const { allFlights, allFlightsLoading, allFlightsError } = this.props;
+        const { latitude, longitude } = this.state;
+
+        if (allFlightsLoading !== false) {
+
+            mainContent = (
+                <div className="loading">
+                    <Image src={giphy1} alt="loading" className="loadingImg" />
+                </div>
+            );
+
+        } else if (allFlightsError !== false) {
+
+            mainContent = (
+                <Alert bsStyle="danger" className="alert">
+                    <h4>Oh snap! You got an error!</h4>
+                    <p>
+                        <Button bsStyle="danger" onClick={this.handleFetchAgain}>Try again</Button>
+                    </p>
+                </Alert>
+            );
+        } else if (allFlights != undefined && allFlights !== false && allFlights !== {}) {
+
+            let sortedFlights = allFlights.sort((a, b) => b.altitude - a.altitude);
+            mainContent = (<FlightsList flights={sortedFlights} />);
         }
+
         return (
             <div>
                 {mainContent}
@@ -43,14 +92,14 @@ Flights.propTypes = {
 const mapStateToProps = state => {
     return {
         allFlights: state.flightsReducer.allFlights,
-        allFlightsLoading: state.flightsReducer.allFlights,
-        allFlightsError: state.flightsReducer.allFlights
+        allFlightsLoading: state.flightsReducer.allFlightsLoading,
+        allFlightsError: state.flightsReducer.allFlightsError
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchFlights: () => dispatch(fetchAllFlights()),
+        onFetchFlights: (position) => dispatch(fetchAllFlights(position)),
     }
 }
 

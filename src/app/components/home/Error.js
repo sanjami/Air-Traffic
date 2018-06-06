@@ -1,10 +1,11 @@
 import React from 'react';
+import { Alert} from 'react-bootstrap';
 
 const Error = (props) => {
     return (
-        <div>
-            <p> An error has occurred:</p>
-        </div>
+        <Alert bsStyle="danger" className="alert">
+            <h4>We are not able to provide service without your location</h4>
+        </Alert>
     )
 }
 

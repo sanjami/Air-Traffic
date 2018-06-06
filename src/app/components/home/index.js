@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { Button, Jumbotron } from 'react-bootstrap';
 import Error from './Error';
-import { dataServices } from '../../../servece/dataService'
 
 class Home extends Component {
     constructor(props) {
@@ -27,13 +27,15 @@ class Home extends Component {
 
     render () {
         return (
-            <div>
+            <Jumbotron id="home">
                 <h1>Airtraffic app</h1>
                 <p>If you want to see all the airplanes that are flying over your current location you must agree to share your location with us</p>
-                <Link to='/flights'>I agree</Link>
-                <button onClick={this.handleError}>I don't agree</button>
+                <p>
+                <Link to='/flights' className="btn btn-primary homeBtn" role="button">I agree</Link>
+                <Button bsStyle="primary" onClick={this.handleError} className="homeBtn">I don't agree</Button>
+                </p>
                 {this.showErrorComponent()}
-            </div>
+            </Jumbotron>
         )
     }
 }

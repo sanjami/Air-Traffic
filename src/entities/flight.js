@@ -6,9 +6,9 @@ class Flight {
     this.direction = (trak < 45 || trak > 135) ? 'E' : 'W'
     this.manufacturer = manufacturer;
     this.model = model;
-    this.originAirport = originAirport;
-    this.destinationAirport = destinationAirport;
-    this.logo = logo;
+    this.originAirport = originAirport || 'Unknown';
+    this.destinationAirport = destinationAirport || 'Unknown';
+    this.logo = logo || 'Unknown';
     }
 }
 

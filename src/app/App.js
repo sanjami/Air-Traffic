@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import  Home from './components/home/index';
 import Flights from './components/flights/index';
-import { FlightsDetails } from './components/flightsDetails/index';
+import FlightDetails from './components/flightDetails/index';
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/flights' component={Flights} />
-          <Route exact path='/flights/:id' component={FlightsDetails} />
+          <Route exact path='/flight/:id' component={FlightDetails} />
         </Switch>
       </div>
     );

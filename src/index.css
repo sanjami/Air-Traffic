@@ -2,4 +2,67 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 16px
+}
+
+#home {
+  background-image: url('./images/1028.jpg');
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+h1 {
+  margin-top: 0;
+  padding: 3%;
+  text-align: center;
+}
+
+.title {
+  margin: 50px;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 28%
+}
+
+#linkButton {
+  margin: 3% 40%;
+}
+
+#detailsButton {
+  margin-top: 28%
+}
+
+.homeBtn {
+  margin:1%
+}
+
+.left {
+  transform: rotate(174deg);
+}
+
+.right {
+  transform: rotate(-6deg);
+}
+
+#list {
+  margin: 10px;
+}
+
+.alert {
+  margin: 50px;
+}
+
+.loading {
+  background-color: #bab2ae;
+  height: 100vh;
+  text-align: center;
+}
+
+.loadingImg {
+  margin-top:30vh;
 }
