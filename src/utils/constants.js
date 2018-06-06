@@ -1,1 +1,1 @@
-export const range = 550;
+export const range = 100;

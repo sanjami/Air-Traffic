@@ -1,27 +1,29 @@
 import React from 'react';
-import { Button, Col, Grid, Image, Row, Table } from 'react-bootstrap';
-import plane1 from '../../../images/plane1.jpg';
+import { Col, Grid, Image, Row, Table } from 'react-bootstrap';
+import logo5 from '../../../images/logo5.jpeg';
+import cockpit from '../../../images/cockpit.jpg';
 import { Link } from 'react-router-dom'
 
 const FlightInfo = (props) => {
 
-    const { id, altitude, destinationAirport, flightNumber, logo, manufacturer, model, originAirport } = props.flight;
-    let imageSrc = logo !== 'Unknown' ? `//logo.clearbit.com/${logo.split(" ").join("").toLowerCase()}.com` : plane1
+    const { destinationAirport, logo, manufacturer, model, originAirport } = props.flight;
+    let imageSrc = logo !== 'Unknown' ? `//logo.clearbit.com/${logo.split(" ").join("").toLowerCase()}.com` : logo5
 
     return (
-        <Grid>
+        <Grid id="flightInfo">
             <Row className="title">
                 <h1>Flight details</h1>
             </Row>
             <Row>
-                <Col sm={6} md={3} >
-                    <Image src={plane1} alt="plane" responsive />
+                <Col sm={6} md={4} >
+                    <Image src={logo5} alt="plane" className="logo5" />
+                    <Image src={cockpit} alt="plane" className="planeImg"/>
                 </Col>
-                <Col sm={6} md={3} className="logo">
-                    <Image src={imageSrc} alt={logo} responsive />
+                <Col sm={6} md={2}>
+                    <Image src={imageSrc} alt={logo} responsive className="logo"/>
                 </Col>
                 <Col sm={12} md={6}>
-                    <Table striped bordered condensed hover>
+                    <Table striped bordered condensed hover id="table">
                         <tbody>
                             <tr>
                                 <td>Airline company:</td>
@@ -48,7 +50,7 @@ const FlightInfo = (props) => {
                 </Col>
             </Row>
             <Row>
-                <Link to='/flights' class="btn btn-primary" bsSize="large" role="button" id="linkButton">Go back to flights list</Link>
+                <Link to='/flights' className="btn btn-primary" role="button" id="linkButton">Go back to flights list</Link>
             </Row>
         </Grid>
     )
