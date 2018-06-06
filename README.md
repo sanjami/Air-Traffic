@@ -16,8 +16,8 @@ How to install this app:
 
 <h3>Technologies used</h3>
 <ul>
-  <li>Frameworks used: React.js, React-bootstrap</li>
-  <li>Languages used: HTML5, CSS3, JS(ES6)</li>
-  <li>Libraries used: fetch-jsonp, react-redux, react-router, redux-saga</li>
+  <li><h4>Frameworks:</h4> React.js, React-bootstrap</li>
+  <li>Languages: HTML5, CSS3, JS(ES6)</li>
+  <li>Libraries: fetch-jsonp, react-redux, react-router, redux-saga</li>
   <li>Created with: create-react-app</li>
 </ul>
