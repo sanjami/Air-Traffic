@@ -4,7 +4,8 @@ import {
     FLIGHTS_FETCH_FAILED,
     FETCH_ONE_FLIGHT,
     ONE_FLIGHT_FETCH_SUCCEEDED,
-    ONE_FLIGHT_FETCH_FAILED
+    ONE_FLIGHT_FETCH_FAILED,
+    SET_LOCATION
 } from './actionTypes';
 
 export function fetchAllFlights(position) {
@@ -46,5 +47,12 @@ export function fetchOneFlightFailed(error) {
     return {
         type: ONE_FLIGHT_FETCH_FAILED,
         error
+    }
+}
+
+export function setLocation(latitude, longitude) {
+    return {
+        type: SET_LOCATION,
+        latitude, longitude
     }
 }

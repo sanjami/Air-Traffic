@@ -4,7 +4,8 @@ import {
     FLIGHTS_FETCH_FAILED,
     FETCH_ONE_FLIGHT,
     ONE_FLIGHT_FETCH_SUCCEEDED,
-    ONE_FLIGHT_FETCH_FAILED
+    ONE_FLIGHT_FETCH_FAILED,
+    SET_LOCATION
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
     allFlightsError: false,
     oneFlight: false,
     oneFlightLoading: false,
-    oneFlightError: false
+    oneFlightError: false,
+    location: false
 }
 
 export default function flightsReducer(state = initialState, action) {
@@ -56,6 +58,11 @@ export default function flightsReducer(state = initialState, action) {
                 ...state,
                 oneFlightLoading: false,
                 oneFlightError: action.error
+            }
+        case SET_LOCATION:
+            return {
+                ...state,
+                location: {latitude : action.latitude, longitude : action.longitude}
             }
         default:
             return state;

@@ -6,40 +6,30 @@ import giphy1 from '../../../images/giphy1.gif'
 import FlightsList from './FlightsList';
 import {
     fetchAllFlights,
+    setLocation
 } from '../../actions/flightsActions';
 
 class Flights extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            latitude: '',
-            longitude: '',
-        }
-    }
-
     componentDidMount() {
         if (this.props.allFlights === false) {
 
-            this.onSetLocation();
+            this.onSetPosition();
         }
 
-        this.interval = setInterval(() => this.onSetLocation(), 60000);
+        this.interval = setInterval(() => this.props.onFetchFlights(this.props.location), 60000);
     }
 
-    onSetLocation = () => {
+    onSetPosition = () => {
         navigator.geolocation.getCurrentPosition((position) => {
-            this.setState({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            }, () => { this.props.onFetchFlights(this.state) })
-        }
+            this.props.onSetLocation(position.coords.latitude, position.coords.longitude)
+            this.props.onFetchFlights(this.props.location)
+            }
         );
     }
 
     handleFetchAgain = () => {
-        const { latitude, longitude } = this.state;
-        this.props.onFetchFlights({ latitude, longitude })
+        this.props.onFetchFlights(this.props.location)
     }
 
     componentWillUnmount() {
@@ -47,6 +37,7 @@ class Flights extends Component {
     }
 
     render() {
+
         let mainContent = null;
 
         const { allFlights, allFlightsLoading, allFlightsError } = this.props;
@@ -86,12 +77,17 @@ class Flights extends Component {
 
 Flights.propTypes = {
     onFetchFlights: PropTypes.func,
+    onSetLocation: PropTypes.func,
     allFlights: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.bool,
     ]),
     allFlightsLoading: PropTypes.bool,
     allFlightsError: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.bool,
+    ]),
+    location: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.bool,
     ]),
@@ -102,12 +98,14 @@ const mapStateToProps = state => {
     return {
         allFlights: state.flightsReducer.allFlights,
         allFlightsLoading: state.flightsReducer.allFlightsLoading,
-        allFlightsError: state.flightsReducer.allFlightsError
+        allFlightsError: state.flightsReducer.allFlightsError,
+        location: state.flightsReducer.location,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
+        onSetLocation: (latitude, longitude) => dispatch(setLocation(latitude, longitude)),
         onFetchFlights: (position) => dispatch(fetchAllFlights(position)),
     }
 }
