@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Row, Col, Image } from 'react-bootstrap';
 import logo6 from '../../../images/logo6.png';
 
@@ -30,6 +31,10 @@ const ListItem = (props) => {
             </Col>
         </Row>
     )
+}
+
+ListItem.propTypes = {
+    oneFlight: PropTypes.object
 }
 
 export default ListItem;

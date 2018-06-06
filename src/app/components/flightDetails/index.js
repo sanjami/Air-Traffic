@@ -24,6 +24,7 @@ class FlightDetails extends Component {
             flightContent = (
                 <div className="loading">
                     <Image src={giphy1} alt="loading" className="loadingImg" />
+                    <p>Loading...</p>
                 </div>
             );
 
@@ -53,7 +54,16 @@ class FlightDetails extends Component {
 }
 
 FlightDetails.propTypes = {
-    onFetchOneFlight: PropTypes.func
+    onFetchOneFlight: PropTypes.func,
+    oneFlight: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.bool,
+    ]),
+    oneFlightLoading: PropTypes.bool,
+    oneFlightError: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.bool,
+    ]),
 }
 
 const mapStateToProps = state => {

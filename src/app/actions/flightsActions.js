@@ -8,7 +8,6 @@ import {
 } from './actionTypes';
 
 export function fetchAllFlights(position) {
-    console.log(position);
     return {
         type: FETCH_ALL_FLIGHTS,
         position

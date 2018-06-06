@@ -3,7 +3,7 @@ class Flight {
     this.id = id;
     this.altitude = altitude;
     this.flightNumber = flightNumber;
-    this.direction = (trak < 45 || trak > 135) ? 'E' : 'W'
+    this.direction = (trak < 180 ) ? 'E' : 'W'
     this.manufacturer = manufacturer;
     this.model = model;
     this.originAirport = originAirport || 'Unknown';

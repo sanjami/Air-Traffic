@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Col, Grid, Image, Row, Table } from 'react-bootstrap';
 import logo5 from '../../../images/logo5.jpeg';
 import cockpit from '../../../images/cockpit.jpg';
@@ -16,14 +17,13 @@ const FlightInfo = (props) => {
             </Row>
             <Row>
                 <Col sm={6} md={4} >
-                    <Image src={logo5} alt="plane" className="logo5" />
                     <Image src={cockpit} alt="plane" className="planeImg"/>
                 </Col>
                 <Col sm={6} md={2}>
                     <Image src={imageSrc} alt={logo} responsive className="logo"/>
                 </Col>
                 <Col sm={12} md={6}>
-                    <Table striped bordered condensed hover id="table">
+                    <Table striped condensed hover id="table">
                         <tbody>
                             <tr>
                                 <td>Airline company:</td>
@@ -54,6 +54,10 @@ const FlightInfo = (props) => {
             </Row>
         </Grid>
     )
+}
+
+FlightInfo.propTypes = {
+    flight: PropTypes.object
 }
 
 export default FlightInfo;

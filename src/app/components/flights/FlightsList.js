@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 import { Col, Row } from 'react-bootstrap';
 
@@ -7,7 +8,7 @@ const FlightList = (props) => {
     return (
         <div id="list">
         <Row >
-            <Col sm={3} xs={12}>
+            <Col sm={3} xs={12} xsHidden>
             <h2>Direction</h2>
             </Col>
             <Col sm={3} xs={4}>
@@ -28,6 +29,10 @@ const FlightList = (props) => {
 
         </div>
     )
+}
+
+FlightList.propTypes = {
+    flights: PropTypes.array
 }
 
 export default FlightList;

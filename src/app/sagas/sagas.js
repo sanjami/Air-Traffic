@@ -28,11 +28,12 @@ export function* flightsSaga() {
   yield takeLatest(FETCH_ALL_FLIGHTS, fetchFlights);
 }
 
-/////////////////////////////////////
+/***********************************************************/
 
 function* fetchOneFlight(action) {    
 
     try {
+
        const flight = yield call(dataServices.getOneFlight, action.id);
        yield put(fetchOneFlightSucceeded(flight));
     } catch (error) {
@@ -44,7 +45,8 @@ function* fetchOneFlight(action) {
    yield takeLatest(FETCH_ONE_FLIGHT, fetchOneFlight);
  }
 
- /////////////////
+ /***********************************************************/
+ 
  export default function* root() {
     yield [
         fork(flightsSaga),

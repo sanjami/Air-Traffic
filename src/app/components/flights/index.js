@@ -22,10 +22,9 @@ class Flights extends Component {
         if (this.props.allFlights === false) {
 
             this.onSetLocation();
-
         }
-        const { latitude, longitude } = this.state;
-        this.interval = setInterval(() => this.props.onFetchFlights(this.state), 60000);
+
+        this.interval = setInterval(() => this.onSetLocation(), 60000);
     }
 
     onSetLocation = () => {
@@ -57,6 +56,7 @@ class Flights extends Component {
             mainContent = (
                 <div className="loading">
                     <Image src={giphy1} alt="loading" className="loadingImg" />
+                    <p>Loading...</p>
                 </div>
             );
 
@@ -83,8 +83,19 @@ class Flights extends Component {
         )
     }
 }
+
 Flights.propTypes = {
     onFetchFlights: PropTypes.func,
+    allFlights: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.bool,
+    ]),
+    allFlightsLoading: PropTypes.bool,
+    allFlightsError: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.bool,
+    ]),
+
 };
 
 const mapStateToProps = state => {

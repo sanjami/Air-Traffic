@@ -14,9 +14,8 @@ body {
 }
 
 #flightInfo {
-  background-color: #80808045;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   padding: 0 40px
 }
 
@@ -33,7 +32,7 @@ h1 {
 
 h3 {
   text-align: center;
-  margin-top: 28%;
+  margin-top: 45px;
 }
 
 h2 {
@@ -47,8 +46,8 @@ h2 {
 }
 
 #detailsButton {
-  margin-top: 28%;
-  margin-left: 20px;
+  margin-top: 45px;
+  margin-left: 30%;
 }
 
 .homeBtn {
@@ -83,48 +82,14 @@ h2 {
 
 .planeImg {
   opacity: 0.5;
+  width: 100%
 }
 
 .logo {
-  margin-top: 15%;
-  margin-bottom: 15%;
-  text-align: center;
+  margin: 15% auto;
 }
 
-#table {
-  font-size: 18px
-}
-
-.logo5 {
-  height: 200px;
-  width: 250px;
-  position: absolute;
-  left: 300px;
-  top: 0px;
-  z-index: -1;
-
-  -webkit-animation: myOrbit 8s linear infinite; /* Chrome, Safari 5 */
-     -moz-animation: myOrbit 8s linear infinite; /* Firefox 5-15 */
-       -o-animation: myOrbit 8s linear infinite; /* Opera 12+ */
-          animation: myOrbit 8s linear infinite; /* Chrome, Firefox 16+ */
-}
-
-@-webkit-keyframes myOrbit {
-  from { -webkit-transform: rotate(0deg) translateX(25vh) rotate(0deg); }
-  to   { -webkit-transform: rotate(360deg) translateX(25vh) rotate(-360deg); }
-}
-
-@-moz-keyframes myOrbit {
-  from { -moz-transform: rotate(0deg) translateX(25vh) rotate(0deg); }
-  to   { -moz-transform: rotate(360deg) translateX(25vh) rotate(-360deg); }
-}
-
-@-o-keyframes myOrbit {
-  from { -o-transform: rotate(0deg) translateX(25vh) rotate(0deg); }
-  to   { -o-transform: rotate(360deg) translateX(25vh) rotate(-360deg); }
-}
-
-@keyframes myOrbit {
-  from { transform: rotate(0deg) translateX(25vh) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(25vh) rotate(-360deg); }
+#table>tbody>tr>td {
+  font-size: 18px;
+  padding: 10px
 }
