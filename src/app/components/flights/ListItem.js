@@ -16,9 +16,9 @@ const ListItem = (props) => {
     }
 
     return (
-        <Row >
+        <Row>
             <Col sm={3} xs={12}>
-                <Image src={logo6} alt="logo" className={setDirection()} />
+                <Image src={logo6} alt="logo" className={setDirection()}/>
             </Col>
             <Col sm={3} xs={4}>
                 <h3>{flightNumber}</h3>
